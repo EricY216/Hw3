@@ -1,0 +1,23 @@
+# app.py
+
+from flask import Flask, render_template
+from models import Product
+
+app = Flask(__name__)
+
+# 假設這是從資料庫中獲取的商品數據
+products_data = [
+    {"product_id": 1, "name": "Product 1", "price": 10.0, "description": "Description for Product 1"},
+    {"product_id": 2, "name": "Product 2", "price": 20.0, "description": "Description for Product 2"},
+    # 其他商品數據...
+]
+
+# 將商品數據轉換為Product對象列表
+products = [Product(**data) for data in products_data]
+
+@app.route('/')
+def product_list():
+    return render_template('product_list.html', products=products)
+
+if __name__ == '__main__':
+    app.run(debug=True)
