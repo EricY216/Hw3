@@ -9,7 +9,9 @@
     <h1>購物車</h1>
     <ul>
         {% for product in cart %}
-            <li>{{ product.name }} - {{ product.price }}元</li>
+            <li>{{ product.name }} - {{ product.price }}元
+			 <a href="{{ url_for('remove_from_cart', product_id=product.id) }}">移除</a>
+			</li>
         {% endfor %}
     </ul>
 </body>
