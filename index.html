@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>線上購物網站</title>
+</head>
+<body>
+    <h1>線上購物</h1>
+    <ul>
+        {% for product in products %}
+            <li>
+                {{ product.name }} - {{ product.price }}元
+                <a href="{{ url_for('add_to_cart', product_id=product.id) }}">加入購物車</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
