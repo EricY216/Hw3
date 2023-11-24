@@ -4,9 +4,12 @@ app = Flask(__name__)
 
 # 模擬資料庫
 products = [
-    {"id": 1, "name": "商品1", "price": 100},
-    {"id": 2, "name": "商品2", "price": 200},
-    {"id": 3, "name": "商品3", "price": 300}
+    {"id": 1, "name": "紅燒牛肉麵", "price": 150},
+    {"id": 2, "name": "清燉牛肉麵", "price": 150},
+    {"id": 3, "name": "雪碧", "price": 35},
+    {"id": 4, "name": "可樂", "price": 35},
+    {"id": 5, "name": "紅燒套餐(紅燒牛肉麵+雪碧或可樂)", "price": 180},
+    {"id": 6, "name": "清燉套餐:清燉牛肉麵+雪碧或可樂", "price": 180}
 ]
 
 cart = []
@@ -25,6 +28,12 @@ def add_to_cart(product_id):
 @app.route('/cart')
 def view_cart():
     return render_template('cart.html', cart=cart)
+
+@app.route('/remove_from_cart/<int:product_id>')
+def remove_from_cart(product_id):
+    global cart
+    cart = [product for product in cart if product['id'] != product_id]
+    return redirect(url_for('view_cart'))
 
 if __name__ == '__main__':
     app.run(debug=True)
