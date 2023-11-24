@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-
 app = Flask(__name__)
-
 #商品列表
 products = [
     {"id": 1, "name": "紅燒牛肉麵", "price": 150},
@@ -11,7 +9,7 @@ products = [
     {"id": 5, "name": "紅燒套餐(紅燒牛肉麵+雪碧或可樂)", "price": 180},
     {"id": 6, "name": "清燉套餐:清燉牛肉麵+雪碧或可樂", "price": 180}
 ]
-#購物車
+#購物車，初始為空的
 cart = []
 @app.route('/')
 def index():
