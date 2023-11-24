@@ -1,7 +1,14 @@
-# Hw3
-Model:
-設定商品代號&名稱&價格和商品描述
-View:
-將Controller轉換出的商品列表表單顯示，供使用者選擇
-Controller:
-將資料庫的商品代號&名稱&價格&商品描述轉換為product列表(View中的商品列表)
+請查看app.py、index.html與cart.html(兩個html需放在資料夾templates裡)
+使用前須於終端下載flask(指令:pip install flask)，並執行app.py+前往http://127.0.0.1:5000 即可使用
+app.py:
+此檔案用於執行瀏覽商品、加入&移除購物車內容、查看購物車內容
+商家若要增加&修改&刪除商品，可直接於此檔案的列表內容進行更動
+index.html:
+初始網頁
+顯示商品列表供使用者瀏覽
+點選加入購物車後，app.py就會執行加入功能
+點選購物車後，即可跳轉至購物車頁面
+cart.html:
+購物車網頁
+顯示從index.html加入的商品內容
+每個商品右側皆有移除鍵，點選移除後，app.py就會執行移除功能
