@@ -10,7 +10,7 @@ case "listJob":
   return;
 
 case "addJob":
-	
+	//有可能是這裡要加$id=(int)$_REQUEST['id'];?
 	$jsonStr = $_POST['dat'];
 	$job = json_decode($jsonStr);
 	//should verify first
