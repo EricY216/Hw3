@@ -4,7 +4,6 @@
 </head>
 
 <body >
-
 <div id="main">
 <div id="list" v-if="UI=='main'">
 	<h1>商品清單</h1>
@@ -42,13 +41,9 @@
 </div>
 <div v-if="UI=='editForm2'">
 	商品名稱: {{newJob.name}} <br/>
-
 	單價: {{newJob.price}} <br>
-
 	商品說明: {{newJob.content}}<br>
-	
 	數量: <input type="text" v-model="newJob.number"><br>
-
 	<input type='button' @click="addJob(job)" value="save">
 </div>
 </div>
@@ -113,7 +108,6 @@ const todoApp= Vue.createApp({
 			const that=this;
 			let mydat = new FormData();
 			mydat.append( "dat", JSON.stringify(this.newJob) );
-
 			let url="clientControl.php?act=addJob";
 			fetch(url,{
 				method: 'POST',
