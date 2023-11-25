@@ -7,7 +7,7 @@
 <hr />
 <div id="main">
 <div id="list" v-if="UI=='main'">
-	<h1>This is the main page.</h1>
+	<h1>商家網頁服務</h1>
 	<button @click="setAddUI()">Load Add Form</button>
 	<table border=1>
 		<tr><td>序號</td><td>商品名稱</td><td>單價</td><td>商品說明</td><td>-</td></tr>
@@ -22,20 +22,14 @@
 </div>
 <div v-if="UI=='editForm'">
 	商品名稱: <input type="text"  v-model="newJob.name"/> <br/>
-
 	單價: <input type="text" v-model="newJob.price"> <br>
-
 	商品說明: <textarea v-model="newJob.content"></textarea><br>
-
 	<input type='button' @click="addJob()" value="save">
 </div>
 <div v-if="UI=='editForm2'">
 	商品名稱: <input type="text"  v-model="newJob.name"/> <br/>
-
 	單價: <input type="text" v-model="newJob.price"> <br>
-
 	商品說明: <textarea v-model="newJob.content"></textarea><br>
-
 	<input type='button' @click="updateJob()" value="save">
 </div>
 </div>
