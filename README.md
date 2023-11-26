@@ -1,14 +1,1 @@
-請查看app.py、index.html與cart.html(兩個html需放在資料夾templates裡)
-使用前須於終端下載flask(指令:pip install flask)，並執行app.py+前往http://127.0.0.1:5000 即可使用
-app.py:
-此檔案用於執行瀏覽商品、加入&移除購物車內容、查看購物車內容
-商家若要增加&修改&刪除商品，可直接於此檔案的列表內容進行更動
-index.html:
-初始網頁
-顯示商品列表供使用者瀏覽
-點選加入購物車後，app.py就會執行加入功能
-點選購物車後，即可跳轉至購物車頁面
-cart.html:
-購物車網頁
-顯示從index.html加入的商品內容
-每個商品右側皆有移除鍵，點選移除後，app.py就會執行移除功能
+demo使用的檔案: clientControl.php, clientModel.php , clientView.html , merchantView.html , merchantControl.php , merchantModel.php , shop.sql , shopping.sql ,dbconfig.php dbconfig.php:用來登入&連線至Mysql以更動資料庫內容 shop.sql:商店的資料庫檔案 shopping.sql:購物車的資料庫檔案 clientModel.php:當收到clientControl.php的呼叫時，於shopping.sql執行資料的新增&刪除 clientView.html:客戶端頁面:此頁面顯示目前資料庫存放的商品列表；點選查看購物車後，可跳轉至購物車內容，顯示目前加入的商品內容&數量和總價 clientControl.php:客戶在點選加入、移除、查看購物車時，呼叫clientModel.php進行購物車的內容更動 merchantModel.php:收到merchantControl.php呼叫後，在shop.sql執行資料的新增&刪除 merchantView.html:商家端頁面:此頁面顯示目前資料庫裡的商品列表；商家可在此進行加入&移除商品動作 merchantControl.php:商家在輸入商品名稱&價格與商品說明或移除商店商品時，呼叫merchantModel.php進行商品上架和下架動作
