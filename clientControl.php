@@ -8,14 +8,14 @@ case "listJob":
   $jobs=getJobList();
   echo json_encode($jobs);
   return;
-//加入商品
+//將商品加入到購物車
 case "addJob":
 	$jsonStr = $_POST['dat'];
 	$job = json_decode($jsonStr);
 	//should verify first
 	addJob($job->name,$job->price,$job->content,$job->number);
 	return;
-//刪除商品
+//刪除購物車內的商品
 case "delJob":
 	$id=(int)$_REQUEST['id']; //$_GET, $_REQUEST
 	//verify
