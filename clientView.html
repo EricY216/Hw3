@@ -23,6 +23,7 @@
 <div v-if="UI=='editForm'">
 	<h1>我的購物車</h1>
 	<button @click="setUI('main')">返回商品清單</button>
+	
 	<table border=1>
 	<tr><td>序號</td><td>商品名稱</td><td>單價</td><td>商品說明</td>
 		<td>數量</td><td>總價</td>
@@ -38,6 +39,7 @@
 		<td><button @click="delJob(job.id)">刪</button></td>
 	</tr>
 </table>
+全部加總價格:{{ totalPrice }}
 </div>
 <div v-if="UI=='editForm2'">
 	商品名稱: {{newJob.name}} <br/>
@@ -60,11 +62,16 @@ const todoApp= Vue.createApp({
 				price: '',
 				content: '',
 				number: 0,
-				total: 0
+				total: 0,
+				totalPrice: 0 // 新增總價格變數
 			}
 		}
 	},
 	methods: {
+	    // 新增計算總價格的方法
+        calculateTotalPrice: function () {
+            this.totalPrice = this.dat.reduce((total, job) => total + Number(job.total),0);
+        },
 		loadList: function () {
 			const that=this; //this  ==> stands for vm6. let's save `this` to `that`
 			fetch('clientControl.php?act=listJob')
@@ -85,10 +92,12 @@ const todoApp= Vue.createApp({
 				return response.json();
 			})
 			.then(function(myJson) {
+			    that.dat = [];
 				//we are inside the callback function, now `this` means the function, not vm6
 				//we will use `that` to access vm6
 				that.dat = myJson;
 				//vm6.dat = myJson;
+				that.calculateTotalPrice();
 			});
 		},
 		delJob: function (id) {
@@ -131,7 +140,8 @@ const todoApp= Vue.createApp({
 		setUI1: function(page) {
 			this.UI=page;
 			this.loadshoppingList();
-		}
+			this.calculateTotalPrice();
+		}	
 	},
 	created() {
 		this.loadList();
