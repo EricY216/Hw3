@@ -1,6 +1,6 @@
 <html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="https://unpkg.com/vue@next"></script>
+<script type="text/javascript" src="https://unpkg.com/vue@3.4.5"></script>
 </head>
 
 <body >
@@ -38,6 +38,8 @@
 		<td>{{job.total}}</td>
 		<td><button @click="delJob(job.id)">刪</button></td>
 	</tr>
+	進行結帳:
+	<button @click="checkout">結帳</button>
 </table>
 全部加總價格:{{ totalPrice }}
 </div>
@@ -68,6 +70,26 @@ const todoApp= Vue.createApp({
 		}
 	},
 	methods: {
+	    checkout: function () {
+        const that = this;
+
+        // 可以在這裡觸發結帳的邏輯，將購物車商品整合為一筆訂單並放入訂單列表
+
+        // 示範：向後端發送結帳請求
+        fetch('clientControl.php?act=checkout')
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (data) {
+                console.log(data);
+
+                // 結帳後，重新載入購物清單
+                that.loadList();
+            })
+            .catch(function (error) {
+                console.error('Error during checkout:', error);
+            });
+        },
 	    // 新增計算總價格的方法
         calculateTotalPrice: function () {
             this.totalPrice = this.dat.reduce((total, job) => total + Number(job.total),0);
