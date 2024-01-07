@@ -26,6 +26,17 @@ case "listshopping":
 	$jobs=getJobList1();
 	echo json_encode($jobs);
 	return;
+case "checkout":
+    // 示範：處理結帳請求，將購物車商品整合為訂單並放入訂單列表
+    $orderId = checkoutOrder();
+
+    // 示範：清空購物車
+    clearShoppingCart();
+
+    echo "Checkout successful. Order ID: " . $orderId;
+    return;
+
+
 /*
 case "updateJob":
         //更新狀態
