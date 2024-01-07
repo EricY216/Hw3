@@ -68,6 +68,47 @@ function delJob($id)
 	mysqli_stmt_execute($stmt);  
 	return True;
 }
+function checkoutOrder()
+{
+	global $db;
+    // 插入新訂單到 orders 表中
+    $insertOrderSql = "INSERT INTO orders (status) VALUES ('unprocessed')";
+    mysqli_query($db, $insertOrderSql);
+
+    // 取得最後插入的訂單ID
+    $orderId = mysqli_insert_id($db);
+
+    // 示範：將訂單標記為已處理
+    $sqlUpdateOrderStatus = "UPDATE orders SET status='Processed' WHERE id=?";
+    $stmtUpdateOrderStatus = mysqli_prepare($db, $sqlUpdateOrderStatus);
+    mysqli_stmt_bind_param($stmtUpdateOrderStatus, "i", $orderId);
+    mysqli_stmt_execute($stmtUpdateOrderStatus);
+
+    // 示範：插入購物車中的商品到 orders_items 表
+    $sqlInsertOrderItems = "INSERT INTO orders_items(order_id, id, number, total)
+                            SELECT ?, NULL, number, total FROM shopping";
+    $stmtInsertOrderItems = mysqli_prepare($db, $sqlInsertOrderItems);
+    mysqli_stmt_bind_param($stmtInsertOrderItems, "i", $orderId);
+    mysqli_stmt_execute($stmtInsertOrderItems);
+
+    // 示範：取得最後插入的訂單ID
+    $orderId = mysqli_insert_id($db);
+
+    // 示範：清空購物車
+    $sqlDeleteShoppingCart = "DELETE FROM shopping";
+    mysqli_query($db, $sqlDeleteShoppingCart);
+
+    return $orderId;
+}
+
+function clearShoppingCart()
+{
+    global $db;
+
+    // 示範：清空購物車
+    $sqlDeleteShoppingCart = "DELETE FROM shopping";
+    mysqli_query($db, $sqlDeleteShoppingCart);
+}
 
 /*
 function updateJob($id, $name,$price,$content)
