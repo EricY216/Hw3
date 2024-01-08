@@ -72,9 +72,6 @@ const todoApp= Vue.createApp({
 	methods: {
 	    checkout: function () {
         const that = this;
-
-        // 可以在這裡觸發結帳的邏輯，將購物車商品整合為一筆訂單並放入訂單列表
-
         // 示範：向後端發送結帳請求
         fetch('clientControl.php?act=checkout')
             .then(function (response) {
@@ -82,7 +79,6 @@ const todoApp= Vue.createApp({
             })
             .then(function (data) {
                 console.log(data);
-
                 // 結帳後，重新載入購物清單
                 that.loadList();
             })
